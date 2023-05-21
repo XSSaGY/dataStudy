@@ -1,16 +1,51 @@
+#include "Linklist.hpp"
+#include "Linknode.hpp"
+#include <vector>
 #include <iostream>
-#include <version.h>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "AppName: " << VersionHelper::getInstance().AppName << std::endl;
-    std::cout << "Author: " << VersionHelper::getInstance().Author << std::endl;
-    std::cout << "Email: " << VersionHelper::getInstance().Email << std::endl;
-    std::cout << "Version: " << VersionHelper::getInstance().Version << std::endl;
-    std::cout << "CommitHash: " << VersionHelper::getInstance().CommitHash << std::endl;
-    std::cout << "CommitDate: " << VersionHelper::getInstance().CommitDate << std::endl;
-    std::cout << "BuildDate: " << VersionHelper::getInstance().BuildDate << std::endl;
-    std::cout << "BuildTime: " << VersionHelper::getInstance().BuildTime << std::endl;
-    std::cout << "IsDevVersion: " << VersionHelper::getInstance().IsDevVersion << std::endl;
+
+int main()
+{
+
+    //struct iterator {
+    //     using value_type = T;
+    //     
+    //     iterator() = default;
+    //     ~iterator() = default;
+    //     iterator & iterator(const iterator&) = default;
+    //     iterator & iterator(iterator&&) = default;
+    //     iterator & operator=(const iterator&) = default;
+    //     
+    //         iterator & operator++()
+    //          {
+    //         if (m_node != nullptr)
+    //              m_node = m_node->getNext();
+    //         return *this;
+    //         }
+    //     
+    //         iterator operator++(int)
+    //         {
+    //         auto tmp = *this;
+    //          ++* this;
+    //        return tmp;
+    //        }
+    //    
+    // protected:
+    //    Linknode<value_type>*m_node{};
+    //    
+    //};
+    int a = 1;
+    Linknode<int> node1(1);
+    Linknode<int> node2(2);
+    Linknode<int> node3(3);
+    Linknode<int> node4(4);
+    Linklist<int> list;
+    list.Insert(&node1, list.getEnd());
+    list.Insert(&node2, list.getEnd());
+    list.Insert(&node3, list.getEnd());
+    list.Insert(&node4, list.getEnd());
+    list.Delete(node3);
+    list.Modity(list.getBegin(), node3);
+    list.Length();
     return 0;
 }
