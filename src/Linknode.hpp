@@ -11,7 +11,6 @@ public:
     Linknode(T value)                                           //值在方括号中
         : data{ value }, next{ nullptr }
     {}
-    //Linknode(int length, const T& value);                      //构造长度为length,值为value的容器
     Linknode<T>* getNext() { return next; }                      //返回next值
     T& getData() { return data; }                                 //返回data值
     void setNext(Linknode<T>* next);                             //修改next的值
@@ -25,18 +24,6 @@ private:
     T data;
     Linknode<T>* next;                   
 };
-
-//template<typename T>
-//Linknode<T>::Linknode(int length, const T& value)
-//    : Linknode{ value }
-//{
-//    for (int i = 1; i < length; i++)
-//    {
-//        Linknode<T> nullNode(value);
-//        nullNode.next = next;
-//        next = &nullNode;
-//    }
-//}
 
 template<typename T>
 inline void Linknode<T>::setNext(Linknode<T>* next)

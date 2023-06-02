@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.11)
 include(../cmake/version_from_git_tag.cmake)
 
 # set the project name and version
-project(cmake-project-template LANGUAGES CXX VERSION ${BUILD_VERSION_MAJOR}.${BUILD_VERSION_MINOR}.${BUILD_VERSION_PATCH})
+project(xss-demo LANGUAGES CXX VERSION ${BUILD_VERSION_MAJOR}.${BUILD_VERSION_MINOR}.${BUILD_VERSION_PATCH})
 
 # set c++ version
 set(CMAKE_CXX_STANDARD 11)

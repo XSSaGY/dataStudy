@@ -1,4 +1,7 @@
 ﻿#include "Linknode.hpp"
+#include <iostream>
+#include <spdlog/spdlog.h>
+
 
 template <typename T> class Linklist;
 /// <summary>
@@ -42,14 +45,18 @@ public:
     {}
 
 	size_t Length();                                                        //求表长
+    //Linknode<T>* getHead() { return &head; }                                //返回表头
     bool Insert(Linknode<T>* elem, Linknode<T>* location);                  //插入元素
+    bool it_Insert(iterator it, T elem);                                    //使用迭代器插入元素
 	bool Delete(Linknode<T> elem);                                          //删除元素
+    bool it_Delete(T elem);                                                 //use iterator to delete
 	bool Modity(Linknode<T>* location, Linknode<T> elem);                   //修改元素
     Linknode<T>* LocateElem(T elem);                                        //返回元素地址
     Linknode<T>* getEnd();                                                  //返回链表最后一个节点地址
     Linknode<T>* getBegin() { return head.getNext(); }                      //返回链表第一个节点地址
     iterator begin();                                                       //头迭代器
     iterator end() { return {}; }                                           //尾迭代器
+    void show();                                                            //遍历打印表中元素
 private:
 	int size;													            //长度
     Linknode<T> head;											            //头节点
@@ -82,16 +89,36 @@ bool Linklist<T>::Linklist::Insert(Linknode<T>* elem, Linknode<T>* location)
     }
     else
     {
-        Linknode<T> temp;
-        //temp.setData(location->getData());
-        temp.setNext(location->getNext());
-        //location->setData(elem.getData());
+        elem->setNext(location->getNext());
         location->setNext(elem);
-        //elem.setData(temp.getData());
-        elem->setNext(temp.getNext());
         size++;
         return true;
     }
+}
+
+template <typename T>
+bool Linklist<T>::it_Insert(iterator it, T elem)
+{
+    std::cout << __LINE__ << std::endl;
+    // Linknode<T> elem_node(elem);
+    std::cout<<it.node<<std::endl;
+    Linknode<T>* elem_node = new Linknode<T>(elem);
+    std::cout << __LINE__ << std::endl;
+    if(it == this->end())
+    {
+        std::cout << __LINE__ << std::endl;
+        this->getEnd()->setNext(elem_node);
+    }
+    else
+    {
+        std::cout << __LINE__ << std::endl;
+        elem_node->setNext(it.node->getNext());
+        std::cout << __LINE__ << std::endl;
+        it.node->setNext(elem_node);
+        std::cout << __LINE__ << std::endl;
+    }
+    size++;
+    return true;
 }
 
 template<typename T>
@@ -111,6 +138,19 @@ inline bool Linklist<T>::Delete(Linknode<T> elem)
         p = p->getNext();
     }
     return false;
+}
+
+template<typename T>
+inline bool Linklist<T>::it_Delete(T elem)
+{
+    iterator it = std::find(begin(),end(),elem);
+    if(it==nullptr) return false;
+    iterator next = ++it;
+    it.node.setData(next.getData());
+    it.node.setNext(next.getNext());
+    delete next.node;
+    size--;
+    return true;
 }
 
 template<typename T>
@@ -203,4 +243,13 @@ Linklist_iterator<T> Linklist_iterator<T>::operator++(int)
     auto temp = *this;
     ++(*this);
     return temp;
+}
+
+template<typename T>
+void Linklist<T>::show()
+{
+    for(iterator it=begin();it==end();++it)
+    {
+        std::cout<<it.node->getData()<<"\n";
+    }
 }
