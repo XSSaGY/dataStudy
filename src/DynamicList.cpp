@@ -1,28 +1,8 @@
 ﻿#include "DynamicList.h"
 #include <iostream>
 
-/// <summary>
-/// 向表中插入元素
-/// </summary>
-/// <param name="len">要插入的长度</param>
-/// <returns>成功true 失败false</returns>
-//bool Dynamic_list::Increase(int len)
-//{
-//    int* p = data;
-//    data = new int[length + len];
-//    for (int i = 0; i < length; i++)
-//        *(data + i) = *(p + i);
-//    length += len;
-//    delete [] p;                  
-//    return true;
-//}
-
 inline void Dynamic_list::check_resize(int sz)
 {
-    // m_cap 当前容量
-    // m_size 当前尺寸
-    // m_data 数据起始地址
-    // m_mt 写入锁
     if (sz <= m_cap)
         return;
 
