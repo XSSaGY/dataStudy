@@ -2,7 +2,6 @@
 #include "ohtoai/allocator.hpp"
 #include <cstddef>
 
-template <typename T, typename Allocator = ohtoai::allocator<T>> class Linklist;
 template <typename T>                                           //使用模板
 class Linknode
 {
@@ -65,7 +64,6 @@ template <typename T>
 struct Linklist_iterator
 {
 public:
-    friend Linklist<T, ohtoai::allocator<Linknode<T>>>;
     using value_type = T;
     using reference = T&;
     using pointer = T*;

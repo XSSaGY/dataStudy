@@ -1,3 +1,4 @@
+#include <utility>
 
 namespace ohtoai
 {
@@ -9,7 +10,7 @@ namespace ohtoai
         using pointer = T*;
         using reference = T&;
 
-        pointer allocate(size_t n = 1)
+        pointer allocate(unsigned int n = 1)
         {
             return static_cast<pointer>(::operator new(sizeof(value_type) * n));
         }
